@@ -1,2 +1,1 @@
-# YOLOv8-ShoeSoles-Detector
-Source codes of the shoe sole detection project I developed when I worked as an image processing engineer at Eurobotik.
+Source codes of the shoe sole detection project I developed when I worked as an image processing engineer at Eurobotik. I used Roboflow to pull the data sets. You can use your own data set with api keys. Pay attention to the paths used in the project, update according to your own project status
