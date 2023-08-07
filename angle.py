@@ -33,8 +33,8 @@ while True:
             cv2.line(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
             angle = calculate_angle(x1, y1, x2, y2)
-            cv2.putText(frame, f"Angle: {angle:.2f} degrees", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            print(angle)
+            cv2.putText(frame, f"Angle: {abs(angle):.2f} degrees", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            print(abs(angle))
     # coordinates
     for r in results:
         boxes = r.boxes
