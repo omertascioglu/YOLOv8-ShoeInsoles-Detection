@@ -8,3 +8,7 @@ First of All : Be sure that you are using GPU in colab.
 Angle.py = In this file, I took project one step further. In addition to the shoe sole, we can now estimate the angles.
 
 <img width="980" alt="Ekran Resmi 2023-08-02 16 12 43" src="https://github.com/omertascioglu/YOLOv8-ShoeSoles-Detector/assets/33811400/94fa69bd-c766-4f8d-94d5-a106b0956fe0">
+
+Alternative and modified live-time shoe sole angle and model finding
+
+<img width="955" alt="Ekran Resmi 2023-08-10 10 23 46" src="https://github.com/omertascioglu/YOLOv8-ShoeSoles-Detector/assets/33811400/a8ffa9eb-4c43-44b6-b940-feb4cc89d893">
