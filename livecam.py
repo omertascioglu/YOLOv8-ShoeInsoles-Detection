@@ -11,19 +11,16 @@ import cv2
 import math
 
 
-# *****************     Class for point        *************************
 class point:
     x = 0
     y = 0
 
-# ------------   Points for Left Right Top and Bottom     --------------
 plL = point()
 plR = point()
 plU = point()
 plD = point()
 
 
-# ---------- Ends Points for Left Right Top and Bottom  ----------------
 
 def midpoint(ptA, ptB):
     return ((ptA[0] + ptB[0]) * 0.5, (ptA[1] + ptB[1]) * 0.5)
@@ -37,8 +34,7 @@ while True:
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (7, 7), 0)
 
-    # Perform edge detection, then perform a dilation + erosion to
-    # close gaps in between object edges
+
     edged = cv2.Canny(gray, 50, 100)
     edged = cv2.dilate(edged, None, iterations=1)
     edged = cv2.erode(edged, None, iterations=1)
@@ -192,19 +188,8 @@ while True:
                     (330, 460), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 255), 2)
 
 
-        for ((xA, yA), (xB, yB), color) in zip(refCoords, objCoords, colors):
-            cv2.circle(orig, (int(xA), int(yA)), 5, color, -1)
+        for ((xB, yB), color) in zip(objCoords, colors):
             cv2.circle(orig, (int(xB), int(yB)), 5, color, -1)
-            cv2.line(orig, (int(xA), int(yA)), (int(xB), int(yB)),
-                     color, 2)
-
-            D = dist.euclidean((xA, yA), (xB, yB)) / refObj[2]
-            (mX, mY) = midpoint((xA, yA), (xB, yB))
-            cv2.putText(orig, "{:.1f}cm".format(D), (int(mX), int(mY - 10)),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.55, color, 2)
-
-
-
             cv2.imshow("Image", orig)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
