@@ -142,7 +142,7 @@ while True:
         if pixelsPerMetric is None:
             pixelsPerMetric = 27.6
 
-        dimA = dA / pixelsPerMetric
+        dimA = dA / (pixelsPerMetric * 4)
         dimB = dB / pixelsPerMetric
 
         cv2.putText(orig, "{:.1f}cm".format(dimA),
