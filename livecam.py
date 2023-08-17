@@ -1,9 +1,6 @@
-# import the necessary packages
-
 from scipy.spatial import distance as dist
 from imutils import perspective
 from imutils import contours
-from ultralytics import YOLO
 import numpy as np
 import argparse
 import imutils
@@ -20,12 +17,9 @@ plR = point()
 plU = point()
 plD = point()
 
-
-
 def midpoint(ptA, ptB):
     return ((ptA[0] + ptB[0]) * 0.5, (ptA[1] + ptB[1]) * 0.5)
 
-# load the image, convert it to grayscale, and blur it slightly
 cam = cv2.VideoCapture(0)
 
 while True:
@@ -34,12 +28,10 @@ while True:
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (7, 7), 0)
 
-
     edged = cv2.Canny(gray, 50, 100)
     edged = cv2.dilate(edged, None, iterations=1)
     edged = cv2.erode(edged, None, iterations=1)
 
-    # Find contours
     contours = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours = contours[0] if len(contours) == 2 else contours[1]
 
@@ -47,28 +39,6 @@ while True:
               (255, 0, 255))
     refObj = None
     pixelsPerMetric = None
-
-    model = YOLO("best.pt")
-
-    results = model(image, conf=0.75)
-
-    for r in results:
-        data = r.boxes
-        for box in data:
-            tl, tr, bl, br = box.xyxy[0]
-            tl, tr, bl, br = int(tl), int(tr), int(bl), int(br)
-
-            # put box in cam
-            cv2.rectangle(image, (tl, tr), (bl, br), (243, 239, 224), 3)
-
-            # object details
-            org = [tl, tr]
-            font = cv2.FONT_HERSHEY_COMPLEX
-            fontScale = 1
-            color = (255, 0, 0)
-            thickness = 2
-
-            cv2.putText(image, """Ayakkabi Tabani""", org, font, fontScale, color, thickness)
 
     for c in contours:
         if cv2.contourArea(c) < 100:
@@ -182,7 +152,7 @@ while True:
             if Angle < 0:
                 Angle = Angle + 180
         else:
-            Angle = 90  # Handle the case when the line is vertical
+            Angle = 90
 
         cv2.putText(orig, "{:.4f}".format(Angle) + " Degrees",
                     (330, 460), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 255), 2)
@@ -190,7 +160,7 @@ while True:
 
         for ((xB, yB), color) in zip(objCoords, colors):
             cv2.circle(orig, (int(xB), int(yB)), 5, color, -1)
-            cv2.imshow("Image", orig)
 
+        cv2.imshow("Image", orig)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
