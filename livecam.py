@@ -1,6 +1,7 @@
 from scipy.spatial import distance as dist
 from imutils import perspective
 from imutils import contours
+from ultralytics import YOLO
 import numpy as np
 import argparse
 import imutils
@@ -39,6 +40,26 @@ while True:
               (255, 0, 255))
     refObj = None
     pixelsPerMetric = None
+
+    model = YOLO("best.pt")
+
+    results = model(image, conf=0.75)
+
+    for r in results:
+        data = r.boxes
+        for box in data:
+            tl, tr, bl, br = box.xyxy[0]
+            tl, tr, bl, br = int(tl), int(tr), int(bl), int(br)
+
+            cv2.rectangle(image, (tl, tr), (bl, br), (243, 239, 224), 3)
+
+            org = [tl, tr]
+            font = cv2.FONT_HERSHEY_COMPLEX
+            fontScale = 1
+            color = (255, 0, 0)
+            thickness = 2
+
+            cv2.putText(image, """Ayakkabi Tabani""", org, font, fontScale, color, thickness)
 
     for c in contours:
         if cv2.contourArea(c) < 100:
