@@ -9,6 +9,6 @@ Angle.py = In this file, I took project one step further. In addition to the sho
 
 <img width="980" alt="Ekran Resmi 2023-08-02 16 12 43" src="https://github.com/omertascioglu/YOLOv8-ShoeSoles-Detector/assets/33811400/94fa69bd-c766-4f8d-94d5-a106b0956fe0">
 
-Livecam.py = Alternative and modified live-time shoe sole angle and model finding
+Livecam.py = Alternative and modified live-time shoe sole angle and model finding. Correction of angle detection problems, %10 error solved.
 
 <img width="958" alt="Ekran Resmi 2023-08-11 19 07 40" src="https://github.com/omertascioglu/YOLOv8-ShoeSoles-Detector/assets/33811400/b98d21a6-1231-4c8d-b4b5-14c9883b015c">
